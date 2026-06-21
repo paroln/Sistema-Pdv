@@ -67,8 +67,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/gabriel/Desktop/Sistema-Pdv/src/manipulacao_arquivos/Caixa/nucleo_caixa/vendas",
-      "program": "c:/Users/gabriel/Desktop/Sistema-Pdv/src/manipulacao_arquivos/Caixa/nucleo_caixa/vendas/build/Debug/outDebug",
+      "cwd": "c:/Users/gabriel/Desktop/Sistema-Pdv/src/manipulacao_arquivos",
+      "program": "c:/Users/gabriel/Desktop/Sistema-Pdv/src/manipulacao_arquivos/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
