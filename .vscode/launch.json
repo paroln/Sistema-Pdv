@@ -15,16 +15,16 @@
       },
       "MIMode": "gdb",
       "setupCommands": [
-          {
-              "description": "Enable pretty-printing for gdb",
-              "text": "-enable-pretty-printing",
-              "ignoreFailures": true
-          },
-          {
-              "description": "Set Disassembly Flavor to Intel",
-              "text": "-gdb-set disassembly-flavor intel",
-              "ignoreFailures": true
-          }
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        },
+        {
+          "description": "Set Disassembly Flavor to Intel",
+          "text": "-gdb-set disassembly-flavor intel",
+          "ignoreFailures": true
+        }
       ]
     },
     {
@@ -36,20 +36,22 @@
       "pipeTransport": {
         "debuggerPath": "/usr/bin/gdb",
         "pipeProgram": "${env:windir}\\system32\\bash.exe",
-        "pipeArgs": ["-c"],
+        "pipeArgs": [
+          "-c"
+        ],
         "pipeCwd": ""
       },
       "setupCommands": [
-          {
-              "description": "Enable pretty-printing for gdb",
-              "text": "-enable-pretty-printing",
-              "ignoreFailures": true
-          },
-          {
-              "description": "Set Disassembly Flavor to Intel",
-              "text": "-gdb-set disassembly-flavor intel",
-              "ignoreFailures": true
-          }
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        },
+        {
+          "description": "Set Disassembly Flavor to Intel",
+          "text": "-gdb-set disassembly-flavor intel",
+          "ignoreFailures": true
+        }
       ]
     },
     {
@@ -65,8 +67,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/gabriel/Desktop/faculdade/src/manipulacao_arquivos",
-      "program": "c:/Users/gabriel/Desktop/faculdade/src/manipulacao_arquivos/build/Debug/outDebug",
+      "cwd": "c:/Users/gabriel/Desktop/Sistema-Pdv/src/manipulacao_arquivos/Caixa/nucleo_caixa/vendas",
+      "program": "c:/Users/gabriel/Desktop/Sistema-Pdv/src/manipulacao_arquivos/Caixa/nucleo_caixa/vendas/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

@@ -6,7 +6,7 @@ void LimparBuffer(){
 }
 
 void EvitarLixoMemoria(Pdv *pdv){
-    pdv->historicoProd = NULL;
+    pdv->historicoVendas = NULL;
     pdv->addProd = NULL;
     pdv->caixaAberto = 0;
     pdv->saldoInicial = 0;

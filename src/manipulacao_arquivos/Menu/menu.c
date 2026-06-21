@@ -1,4 +1,7 @@
 #include "menu.h"
+#include "../Caixa/nucleo_caixa/vendas/vendas.h"
+#include "../Utilitarios/utils.h"
+#include "../Caixa/controle_estoq/produtos.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -13,8 +16,9 @@ void Menu(Pdv *pdv){
         switch(op){
             case 1: AbrirCaixa(pdv); break;
             case 2: CadastrarProdutos(pdv); break;
+            case 3: RealizarVenda(pdv); break;
         }
     } while(op != 5);
     free(pdv->addProd);
-    free(pdv->historicoProd);
+    free(pdv->historicoVendas);
 }

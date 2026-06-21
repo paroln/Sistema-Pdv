@@ -11,6 +11,17 @@ void AllocarHistorico(Pdv *pdv){
             free(pdv->addProd);
             printf("\nERRO NA MEMORIA"); exit(1);
         }
-    } else if(pdv->capacidadeVendas == pdv->quantidadeVendas)
+    } else if(pdv->capacidadeVendas == pdv->quantidadeVendas){
+         pdv->capacidadeVendas*= 2;
+         Venda *temp = realloc(pdv->historicoVendas, pdv->capacidadeVendas * sizeof (Venda));
+         if(temp == NULL){
+            free(pdv->historicoVendas);
+            free(pdv->addProd);
+            printf("\nERRO NA MEMORIA");
+            exit(1);
+         }
+         pdv->historicoVendas = temp;
+
+    }
 
 }

@@ -15,4 +15,5 @@ void CadastrarProdutos(Pdv *pdv){
     ValidarTipo(&p1.tipoProd);
     ValidarEstoque(&p1.estoqueProd);
     ValidarPreco(&p1.precoProd);
+    CapacidadeProdutos(pdv, p1);
 }
