@@ -2,5 +2,5 @@
 #define HALLOC_H
 #include "../../Caixa/nucleo_caixa/caixa.h"
 
-void AllocarHistorico(Pdv *pdv);
+void AllocarHistorico(Pdv *pdv, int quantidade, int indice);
 #endif
