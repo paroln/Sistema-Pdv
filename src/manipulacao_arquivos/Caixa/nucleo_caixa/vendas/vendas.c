@@ -3,10 +3,10 @@
 #include "../../../Utilitarios/utils.h"
 #include <stdio.h>
 #include <string.h>
-
+#include <ctype.h>
 void RealizarVenda(Pdv *pdv){
-    int opcao, retorno, idEscolha, encontrado = 0;
-    char escolha[50];
+    int opcao, retorno, idEscolha, idEncontrado = 0, nomeEncontrado = 0;
+    char nomeEscolha[50];
     if(pdv->caixaAberto == 0 || pdv->quantidadeProd == 0 ){
         printf("\nO seu caixa ainda nao foi aberto, ou nao ha produtos cadastrados");
         return;
@@ -57,30 +57,55 @@ void RealizarVenda(Pdv *pdv){
                 }
             }
 
-                printf("\nDigite o nome do produto");
-                fgets(escolha, 50, stdin);
-                escolha[strcspn(escolha, "\n")] = '\0';
+                printf("\nDigite o nome do produto: ");
+                LimparBuffer();
+                fgets(nomeEscolha 
+                    , 50, stdin);
+                nomeEscolha[strcspn(nomeEscolha, "\n")] = '\0';
+                char escolhaMinuscula[50];
+                for (int j = 0;nomeEscolha[j] != '\0'; j ++){
+                    escolhaMinuscula[j] = tolower((unsigned char)nomeEscolha[j]);
+                } 
+                    escolhaMinuscula[strlen(nomeEscolha)] = '\0';
+
                 printf("\nSelecione o ID do produto desejado");
                 for(int i = 0; i < pdv->quantidadeProd; i++){
-                    if(strstr(pdv->addProd[i].nomeProd, escolha)!=NULL){
-                        if(pdv->addProd[i].disponivelProd == 1){
-                            printf("\n[%d] | %s ", pdv->addProd[i].idProd, pdv->addProd[i].nomeProd);
-                        }
+                    char nomeMin[50];
+                    for(int j = 0; pdv->addProd[i].nomeProd[j] != '\0'; j++){
+                        nomeMin[j] = tolower((unsigned char)pdv->addProd[i].nomeProd[j]);
+                    }
+                    nomeMin[strlen(pdv->addProd[i].nomeProd)] = '\0';
+
+                    if(strstr(nomeMin, escolhaMinuscula) != NULL && pdv->addProd[i].disponivelProd == 1 && pdv->addProd[i].tipoProd == opcao){
+                        printf("\n[%d] | %s", pdv->addProd[i].idProd, pdv->addProd[i].nomeProd);
+                        nomeEncontrado = 1;
+
+                    }
+                    if(nomeEncontrado == 0){
+                        printf("\nNenhum produto encontrado!");
+                            return;
+                    }
+
+
+                }
+                    printf("\nID: ");
+                    if(scanf("%d", &idEscolha) !=1){
+                        printf("\nDigite apenas numeros");
+                        LimparBuffer();
+                        continue;
+                    }   
+                        idEncontrado = 0;
+                        for(int i = 0; i < pdv->quantidadeProd; i++){
+                            if(idEscolha == pdv->addProd[i].idProd && pdv->addProd[i].tipoProd == opcao && pdv->addProd[i].disponivelProd == 1){
+                            printf("\nProduto selecionado: %s", pdv->addProd[i].nomeProd);
+                            idEncontrado = 1;
+                            break;
                     }
                 }
 
-                printf("\nID: ");
-                scanf("%d", &idEscolha);
-                for(int i = 0; i < pdv->quantidadeProd; i++){
-                    if(idEscolha == pdv->addProd[i].idProd){
-                        printf("\nProduto selecionado: %s", pdv->addProd[i].nomeProd);
-                        encontrado = 1;
-                        break;
-                    }
-                }
-
-                if(encontrado == 0){
+                if(idEncontrado == 0 ){
                     printf("\nNenhum produto encontrado");
+                    return;
                 }
 
 
