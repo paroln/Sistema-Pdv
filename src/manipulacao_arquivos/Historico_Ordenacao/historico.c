@@ -1,7 +1,10 @@
 #include "historico.h"
 #include <stdio.h>
 #include <string.h>
-
+if (pdv->quantidadeVendas == 0) {
+    printf("\nNenhuma venda registrada ainda.");
+    return;
+}
 int buscaBinaria(Produtos arr[], int tam, float chave) {
     int esq = 0;
     int dir = tam - 1;
@@ -48,10 +51,7 @@ void OrdenacaoBinaria(Produtos arr[], int tam) {
 }
 
 void ExibirRankingLucro(Pdv *pdv) {
-    if (pdv->quantidadeVendas == 0) {
-    printf("\nNenhuma venda registrada ainda.");
-    return;
-}
+
     
 
     Produtos copia[pdv->quantidadeProd];
@@ -78,10 +78,7 @@ void OrdenacaoBinariaEstoque(Produtos arr[], int tam) {
 }
 
 void ExibirRankingQuantidade(Pdv *pdv){
-    if (pdv->quantidadeVendas == 0){  
-        printf("\nNenhuma venda registrada ainda.");
-        return;
-    }
+   
     Produtos copia[pdv->quantidadeProd];
         for (int i = 0; i < pdv->quantidadeProd; i++)
             copia[i] = pdv->addProd[i];

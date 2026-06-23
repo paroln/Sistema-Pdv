@@ -1,7 +1,6 @@
 #ifndef VALIDACOES_H
 #define VALIDACOES_H
-
-#include "../utilitarios/utils.h"
+#include "../Caixa/nucleo_caixa/caixa.h"
 
 void ValidarID(int *id, Pdv *pdv);
 void ValidarPreco(float *valor);

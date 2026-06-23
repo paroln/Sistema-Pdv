@@ -125,14 +125,17 @@ void RealizarVenda(Pdv *pdv){
 
                 pdv->addProd[indice].estoqueProd -= quantidade;
 
+                pdv->addProd[indice].totalVendido += quantidade;
+
                 if(pdv->addProd[indice].estoqueProd == 0){
                         pdv->addProd[indice].disponivelProd = 0;
-                        printf("\nProduto esgotado!");
+                        printf("\n| Produto esgotado! |");
                 }
                 AllocarHistorico(pdv, quantidade, indice);
-                printf("\nVenda realizada! Total: R$ %.2f", pdv->historicoVendas[pdv->quantidadeVendas - 1].totalVendas);
-                printf("\nVenda realizada! Estoque restante: %d", pdv->addProd[indice].estoqueProd);
-
+                printf("\n| Venda realizada! Total: |R$ %.2f", pdv->historicoVendas[pdv->quantidadeVendas - 1].totalVendas);
+                printf("\n| Venda realizada! Estoque restante: |  %d", pdv->addProd[indice].estoqueProd);
+                pdv->saldoVendas += pdv->historicoVendas[pdv->quantidadeVendas - 1].totalVendas;
+                pdv->saldoTotal  += pdv->historicoVendas[pdv->quantidadeVendas - 1].totalVendas;
 
 
 

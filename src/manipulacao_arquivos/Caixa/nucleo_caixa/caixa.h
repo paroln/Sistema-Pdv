@@ -19,9 +19,7 @@ typedef struct{
     float saldoVendas;
     int caixaAberto;
     Venda *historicoVendas;
-    int capacidadeVendas;
-    int quantidadeVendas;
-    
+    int capacidadeVendas;    
     Produtos *addProd;
     int quantidadeProd;
     int capacidadeProd;

@@ -2,7 +2,7 @@
 #include "../Caixa/nucleo_caixa/vendas/vendas.h"
 #include "../Utilitarios/utils.h"
 #include "../Caixa/controle_estoq/produtos.h"
-#include "../Historico - Ordenacao/historico.h"
+#include "../Historico_Ordenacao/historico.h"
 #include <stdio.h>
 #include <stdlib.h>
 
