@@ -20,5 +20,6 @@ void CapacidadeProdutos(Pdv *pdv, Produtos produto_novo){
         pdv->addProd = temp;
     }
     pdv->addProd[pdv->quantidadeProd] = produto_novo;
+    pdv->addProd[pdv->quantidadeProd].totalVendido = 0;
     pdv->quantidadeProd++;
 }

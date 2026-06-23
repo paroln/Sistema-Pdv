@@ -1,4 +1,5 @@
 #include "validacoes.h"
+#include "../Utilitarios/utils.h"
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>

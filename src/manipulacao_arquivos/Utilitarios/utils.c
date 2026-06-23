@@ -16,5 +16,4 @@ void EvitarLixoMemoria(Pdv *pdv){
     pdv->quantidadeVendas = 0;
     pdv->saldoVendas = 0;
     pdv->saldoTotal = 0;
-    pdv->saldoInicial = 0;
 }

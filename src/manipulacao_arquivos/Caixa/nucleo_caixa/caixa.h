@@ -3,7 +3,7 @@
 typedef struct{
     int idVendas;
     float totalVendas;
-    int quantidadeVendas;
+    int quantVendas;
 } Venda;
 typedef struct{
     int idProd;
@@ -12,6 +12,7 @@ typedef struct{
     float precoProd;
     int estoqueProd;
     int disponivelProd;
+    int totalVendido;
 } Produtos;
 typedef struct{
     float saldoTotal;
@@ -19,7 +20,8 @@ typedef struct{
     float saldoVendas;
     int caixaAberto;
     Venda *historicoVendas;
-    int capacidadeVendas;    
+    int capacidadeVendas;
+    int quantidadeVendas;    
     Produtos *addProd;
     int quantidadeProd;
     int capacidadeProd;

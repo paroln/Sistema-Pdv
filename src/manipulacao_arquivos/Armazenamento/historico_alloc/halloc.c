@@ -25,7 +25,7 @@ void AllocarHistorico(Pdv *pdv, int quantidade, int indice){
     }
 
         pdv->historicoVendas[pdv->quantidadeVendas].idVendas = pdv->quantidadeVendas + 1;
-        pdv->historicoVendas[pdv->quantidadeVendas].quantidadeVendas = quantidade;
+        pdv->historicoVendas[pdv->quantidadeVendas].quantVendas = quantidade;
         pdv->historicoVendas[pdv->quantidadeVendas].totalVendas = quantidade * pdv->addProd[indice].precoProd;
         pdv->quantidadeVendas++;
 }
