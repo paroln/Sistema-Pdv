@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include "../../Utilitarios/utils.h"
 
 void AllocarHistorico(Pdv *pdv, int quantidade, int indice){
     if(pdv->capacidadeVendas == 0){

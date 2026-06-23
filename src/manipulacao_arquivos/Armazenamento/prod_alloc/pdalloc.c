@@ -1,8 +1,9 @@
 #include "pdalloc.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "../../Utilitarios/utils.h"
 
-void CapacidadeProdutos(Pdv *pdv, Produtos produto_novo){
+void CapacidadeProdutos(Pdv *pdv){
     if (pdv->capacidadeProd == 0) {
         pdv->capacidadeProd = 10;
         pdv->addProd = malloc(10 * sizeof(Produtos));
@@ -19,7 +20,5 @@ void CapacidadeProdutos(Pdv *pdv, Produtos produto_novo){
         }
         pdv->addProd = temp;
     }
-    pdv->addProd[pdv->quantidadeProd] = produto_novo;
-    pdv->addProd[pdv->quantidadeProd].totalVendido = 0;
-    pdv->quantidadeProd++;
+
 }

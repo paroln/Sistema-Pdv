@@ -1,5 +1,5 @@
 #ifndef VENDAS_H
 #define VENDAS_H
-#include "../caixa.h"
+#include "../nucleo_caixa/caixa.h"
 void RealizarVenda(Pdv *pdv);
 #endif

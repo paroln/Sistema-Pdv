@@ -1,6 +1,7 @@
 #include "vendas.h"
-#include "../../../Armazenamento/historico_alloc/halloc.h"
-#include "../../../Utilitarios/utils.h"
+#include "../../Persistencia/persistencia.h"
+#include "../../Armazenamento/historico_alloc/halloc.h"
+#include "../../Utilitarios/utils.h"
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
@@ -13,26 +14,26 @@ void RealizarVenda(Pdv *pdv){
     }
     
     do{
-            printf("\nEscolha");
-            printf("\nMercado - 1");
-            printf("\nPadaria - 2");
+            printf("\n===== Escolha =====");
+            printf("\n1 | Mercado");
+            printf("\n2 | Padaria");
             retorno = scanf("%d", &opcao);
             if(retorno !=1){
-                printf("\nUtilize apenas numeros");
+                printf("\n===== Utilize apenas numeros! =====");
                 LimparBuffer();
                 continue;
             }
             if (opcao == 1 ){
-                printf("\n=========Mercado=========");
+                printf("\n===== Mercado =====");
                 for(int i = 0; i< pdv->quantidadeProd; i++){
                     if(pdv->addProd[i].tipoProd == 1){
                         if(pdv->addProd[i].disponivelProd == 1){
-                            printf("\n|Produto | %s", pdv->addProd[i].nomeProd);
-                            printf("\n|Estoque | %d", pdv->addProd[i].estoqueProd);
+                            printf("\n| Produto | %s", pdv->addProd[i].nomeProd);
+                            printf("\n| Estoque | %d", pdv->addProd[i].estoqueProd);
                             printf("\n=====================");
                         }
                         else if(pdv->addProd[i].disponivelProd == 0){
-                            printf("\n|Produto| %s", pdv->addProd[i].nomeProd);
+                            printf("\n| Produto | %s", pdv->addProd[i].nomeProd);
                             printf("\n| Fora de estoque | ");
 
                         }
@@ -40,16 +41,17 @@ void RealizarVenda(Pdv *pdv){
                 }
             }
             if (opcao == 2 ){
-                printf("\n=========Padaria=========");
+                printf("\n===== Padaria =====");
                 for(int i = 0; i< pdv->quantidadeProd; i++){
                     if(pdv->addProd[i].tipoProd == 2){
                         if(pdv->addProd[i].disponivelProd == 1){
-                            printf("\n|Produto | %s", pdv->addProd[i].nomeProd);
-                            printf("\n|Estoque | %d", pdv->addProd[i].estoqueProd);
+                            printf("\n| Produto | %s", pdv->addProd[i].nomeProd);
+                            printf("\n| Estoque | %d", pdv->addProd[i].estoqueProd);
+                            printf("\n| Preco R$%.2f |", pdv->addProd[i].precoProd);
                             printf("\n=====================");
                         }
                         else if(pdv->addProd[i].disponivelProd == 0){
-                            printf("\n|Produto| %s", pdv->addProd[i].nomeProd);
+                            printf("\n| Produto | %s", pdv->addProd[i].nomeProd);
                             printf("\n| Fora de estoque | ");
 
                         }
@@ -57,7 +59,7 @@ void RealizarVenda(Pdv *pdv){
                 }
             }
 
-                printf("\nDigite o nome do produto: ");
+                printf("\n| Digite o nome do produto: ");
                 LimparBuffer();
                 fgets(nomeEscolha, 50, stdin);
                 nomeEscolha[strcspn(nomeEscolha, "\n")] = '\0';
@@ -86,12 +88,12 @@ void RealizarVenda(Pdv *pdv){
                 }
 
                 if(nomeEncontrado == 0){
-                        printf("\nNenhum produto encontrado!");
+                        printf("\n===== Nenhum produto encontrado! =====");
                         return;
                 }
                 printf("\nID: ");   
                 if(scanf("%d", &idEscolha) != 1){
-                        printf("\nDigite apenas numeros");
+                        printf("\n===== Digite apenas numeros =====");
                         LimparBuffer();
                         continue;
                 }
@@ -99,7 +101,7 @@ void RealizarVenda(Pdv *pdv){
                 idEncontrado = 0;
                 for(int i = 0; i < pdv->quantidadeProd; i++){
                     if(idEscolha == pdv->addProd[i].idProd && pdv->addProd[i].tipoProd == opcao && pdv->addProd[i].disponivelProd == 1){
-                            printf("\nProduto selecionado: %s", pdv->addProd[i].nomeProd);
+                            printf("\n| Produto selecionado: %s", pdv->addProd[i].nomeProd);
                             idEncontrado = 1;
                             indice = i;
                             break;
@@ -107,13 +109,13 @@ void RealizarVenda(Pdv *pdv){
                 }
 
                 if(idEncontrado == 0){
-                        printf("\nNenhum produto encontrado");
+                        printf("\n===== Nenhum produto encontrado! =====");
                         return;
                     }
 
-                printf("\nQuantidade: ");
+                printf("\n| Quantidade: ");
                 if(scanf("%d", &quantidade) != 1 || quantidade <= 0){
-                        printf("\nQuantidade invalida");
+                        printf("\n===== Quantidade invalida! =====");
                         LimparBuffer();
                         return;
                 }
@@ -124,7 +126,6 @@ void RealizarVenda(Pdv *pdv){
                 }
 
                 pdv->addProd[indice].estoqueProd -= quantidade;
-
                 pdv->addProd[indice].totalVendido += quantidade;
 
                 if(pdv->addProd[indice].estoqueProd == 0){
@@ -136,7 +137,7 @@ void RealizarVenda(Pdv *pdv){
                 printf("\n| Venda realizada! Estoque restante: |  %d", pdv->addProd[indice].estoqueProd);
                 pdv->saldoVendas += pdv->historicoVendas[pdv->quantidadeVendas - 1].totalVendas;
                 pdv->saldoTotal  += pdv->historicoVendas[pdv->quantidadeVendas - 1].totalVendas;
-
+                SalvarProdutos(pdv);
 
 
     }while ( retorno !=1|| (opcao !=1 && opcao !=2));

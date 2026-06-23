@@ -1,6 +1,7 @@
 #include "historico.h"
 #include <stdio.h>
 #include <string.h>
+#include "../Utilitarios/utils.h"
 
 int buscaBinaria(Produtos arr[], int tam, float chave) {
     int esq = 0;
@@ -34,10 +35,9 @@ void ordenacaobinaria(Produtos arr[], int tam) {
     }
 }
 
-void ExibirRankingLucro(Pdv *pdv) {
-
-    if (pdv->quantidadeProd == 0) {
-        printf("\nNenhum produto cadastrado.");
+void ExibirMaiorPreco(Pdv *pdv) {
+    if (!pdv->caixaAberto){
+        printf("\n===== Caixa ainda nao foi aberto! =====");
         return;
     }
 
@@ -49,7 +49,8 @@ void ExibirRankingLucro(Pdv *pdv) {
 
     ordenacaobinaria(copia, pdv->quantidadeProd);
 
-    printf("\n===== RANKING POR PRECO =====");
+    printf("\n===== PRODUTOS COM MAIOR PRECO =====");
+    
 
     for (int i = 0; i < pdv->quantidadeProd; i++) {
         printf("\n%d. %s | R$ %.2f",
@@ -61,9 +62,11 @@ void ExibirRankingLucro(Pdv *pdv) {
 }
 
 void ExibirRankingQuantidade(Pdv *pdv) {
-
+    if(!pdv->caixaAberto){
+        return;
+    }
     if (pdv->quantidadeProd == 0) {
-        printf("\nNenhum produto cadastrado.");
+        printf("\n| Nenhum produto cadastrado! ");
         return;
     }
 
@@ -85,7 +88,11 @@ void ExibirRankingQuantidade(Pdv *pdv) {
         copia[j + 1] = chave;
     }
 
-    printf("\n===== RANKING POR VENDAS =====");
+    printf("\n===== PRODUTOS COM MAIS VENDAS HOJE =====");
+    if (pdv->quantidadeVendas == 0){
+        printf("\n| Ainda nao ha vendas feitas hoje");
+        return;
+    }
 
     for (int i = 0; i < pdv->quantidadeProd; i++) {
         printf("\n%d. %s | %d vendidos",
@@ -95,3 +102,22 @@ void ExibirRankingQuantidade(Pdv *pdv) {
         );
     }
 }
+
+void ExibirHistoricoFinanceiro(Pdv *pdv) {
+    if (!pdv->caixaAberto) {
+        return;
+    }
+
+            printf("\n===== HISTORICO FINANCEIRO =====");
+            printf("\n| Saldo inicial:    R$ %.2f", pdv->saldoInicial);
+            printf("\n| Total em vendas:  R$ %.2f", pdv->saldoVendas);
+            printf("\n| Saldo atual:      R$ %.2f", pdv->saldoTotal);
+            printf("\n| Vendas realizadas: %d", pdv->quantidadeVendas);
+
+            if (pdv->quantidadeVendas > 0) {
+                printf("\n| Media vendida:     R$ %.2f", pdv->saldoVendas / pdv->quantidadeVendas);
+        }
+
+
+    }
+

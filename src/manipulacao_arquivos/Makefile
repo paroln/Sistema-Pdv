@@ -9,8 +9,11 @@ SRCS = main.c \
        Validacoes/validacoes.c \
        Armazenamento/prod_alloc/pdalloc.c \
        Armazenamento/historico_alloc/halloc.c \
-       Caixa/nucleo_caixa/vendas/vendas.c \
-       Historico_Ordenacao/historico.c
+       Caixa/vendas/vendas.c \
+       Historico_Ordenacao/historico.c \
+       Persistencia/persistencia.c \
+       Caixa/editar_produto/editar.c \
+       Caixa/insercao_prods/inserir.c
 
 TARGET = programa.exe
 
