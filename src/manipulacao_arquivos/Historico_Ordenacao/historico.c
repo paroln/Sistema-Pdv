@@ -11,7 +11,7 @@ int buscaBinaria(Produtos arr[], int tam, float chave) {
 
         if (arr[meio].precoProd == chave)
             return meio;
-        else if (arr[meio].precoProd < chave)
+        else if (arr[meio].precoProd > chave)
             esq = meio + 1;
         else
             dir = meio - 1;
