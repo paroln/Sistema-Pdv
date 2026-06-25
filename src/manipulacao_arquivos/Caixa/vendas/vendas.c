@@ -6,8 +6,8 @@
 #include <string.h>
 #include <ctype.h>
 void RealizarVenda(Pdv *pdv){
-    int opcao, retorno, quantidade, indice, idEscolha, idEncontrado = 0, nomeEncontrado = 0;
-    char nomeEscolha[50];
+    int opcao, retorno, quantidade, indice, idEscolha, idEncontrado = 0, nomeEncontrado = 0; float totalSessao = 00.0f;
+    char nomeEscolha[50],continuarCompra;
     if(pdv->caixaAberto == 0 || pdv->quantidadeProd == 0 ){
         printf("\nO seu caixa ainda nao foi aberto, ou nao ha produtos cadastrados");
         return;
@@ -21,7 +21,12 @@ void RealizarVenda(Pdv *pdv){
             if(retorno !=1){
                 printf("\n===== Utilize apenas numeros! =====");
                 LimparBuffer();
-                continue;
+                return;
+            }
+
+            if(opcao != 2 && opcao != 1){
+                printf("\nOpcao invalida!");
+                return;
             }
             if (opcao == 1 ){
                 printf("\n===== Mercado =====");
@@ -58,7 +63,7 @@ void RealizarVenda(Pdv *pdv){
                     }
                 }
             }
-
+            
                 printf("\n| Digite o nome do produto: ");
                 LimparBuffer();
                 fgets(nomeEscolha, 50, stdin);
@@ -133,12 +138,18 @@ void RealizarVenda(Pdv *pdv){
                         printf("\n| Produto esgotado! |");
                 }
                 AllocarHistorico(pdv, quantidade, indice);
-                printf("\n| Venda realizada! Total: |R$ %.2f", pdv->historicoVendas[pdv->quantidadeVendas - 1].totalVendas);
-                printf("\n| Venda realizada! Estoque restante: |  %d", pdv->addProd[indice].estoqueProd);
                 pdv->saldoVendas += pdv->historicoVendas[pdv->quantidadeVendas - 1].totalVendas;
                 pdv->saldoTotal  += pdv->historicoVendas[pdv->quantidadeVendas - 1].totalVendas;
+                totalSessao += pdv->historicoVendas[pdv->quantidadeVendas - 1].totalVendas;
                 SalvarProdutos(pdv);
 
+                printf("\nDeseja adicionar mais algum produto na sacola?");
+                scanf(" %c",&continuarCompra);
+                if(continuarCompra == 'n' || continuarCompra == 'N'){
+                    printf("\n| Venda realizada! Total da sessao: |R$ %.2f", totalSessao);
+                    printf("======================================");
+                }
 
-    }while ( retorno !=1|| (opcao !=1 && opcao !=2));
+
+    }while ( continuarCompra == 's' || continuarCompra == 'S' );
 }
