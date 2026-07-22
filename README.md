@@ -1,1 +1,1 @@
-Programa para controle de caixa, tanto de mercado, quanto pra itens produzidos de padaria, nao esta 100% pronto, mas e so pra deixar salvo aqui, vou passar ele todo para c++
+
